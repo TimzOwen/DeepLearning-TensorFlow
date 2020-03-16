@@ -156,5 +156,30 @@ with tf.Session() as sess:
 #gives 
 [1,3]
 
-#LINEAR REGRESSION 
+#LINEAR REGRESSION : inloves fitting data into one line
 #try fit 100 datasets into one line
+#QUIZ: trainX has values between -1 and 1, and trainY has 3 times the trainX and some randomness.
+#1.0 : import and Create training data 
+import tensorflow as tf
+import numpy as np
+trainX = np.linspace(-1,1, 101)
+trainy = 3*trainX + np.random.randn(*trainX.shape) * 0.33
+#placeholders
+x=tf.placeholder("float")
+y=tf.placeholder("float")
+#next is modelling
+w = tf.Variable(0.0, name="weights")
+y_model = tf.multiply(X, w)
+cost = (tf.pow(Y-y_model, 2))
+train_op = tf.train.GradientDescentOptimizer(0.01).minimize(cost)
+#Training model
+init= tf.global_variables_initializer() 
+with tf.Session() as sess:
+    sess.run(init)
+    for i in range(100):
+        for (x, y) in zip(trainX, trainY):
+            sess.run(train_op, feed_dict={X: x, Y: y})
+    print(sess.run(w))
+
+
+#PART TWO COMING OVER ON ADVANCED NNC
