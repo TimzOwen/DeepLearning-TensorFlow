@@ -43,3 +43,33 @@ b = tf.Variable(2.0, name="test_var")
 b
 tensorflow.python.ops.variables.Variable object at 0x7f37ebda1990
 
+#initializers for both versions
+init_op = tf.global_variables_initializer() #greater > version
+init_op = tf.initialize_all_variables() #<version
+
+#Now running this outputs
+graph = tf.get_default_graph()
+for op in graph.get_operations():
+    print(op.name)
+    
+        #     Const
+        # test_var/initial_value
+        # test_var
+        # test_var/Assign
+        # test_var/read
+        # init
+
+#PLACEHOLDERS
+#this as tensors awaiting initializations and used esp during training of a model
+#when sessions are running
+#feed_dict are data fed to placeholders
+a=tf.placeholder("float")
+b=tf.placeholder("float")
+y=tf.multiply(a,b)
+feed_dict={a:2,b:3}
+with tf.Session() as sess:
+    print(sess.run(y,feed_dict))
+
+#TF on Devices;
+#tensorflow allows you to run your code on GPU and CPU due to its inbuilt capabilities
+
