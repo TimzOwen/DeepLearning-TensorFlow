@@ -22,4 +22,8 @@ With this knowledge you can then:
 
 We are going to create a simple 3-layered neural network to help classify MNIST dataset.
 
+# Devices in TensorFlow
 
+![devices on tf](https://user-images.githubusercontent.com/34624703/76847877-d0a0e100-6853-11ea-8757-6df3364fce11.PNG)
+
+TensorFlow has very strong in-built capabilites to run your code on a gpu or a cpu or a cluster of gpu 
