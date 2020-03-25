@@ -164,9 +164,19 @@ import tensorflow as tf
 import numpy as np
 trainX = np.linspace(-1,1, 101)
 trainy = 3*trainX + np.random.randn(*trainX.shape) * 0.33
+
 #placeholders
 x=tf.placeholder("float")
 y=tf.placeholder("float")
+
+# addition of variables with placeholders
+a=tf.placeholder(tf.float32)
+b=tf.placeholder(tf.float32)
+adder_node=a+b
+with tf.Session() as sess:
+    print(sess.run(adder_node, feed_dict={a:[2,4,6], b:[8,10,12]}))
+    #gives: 10,14,18
+    
 #next is modelling
 w = tf.Variable(0.0, name="weights")
 y_model = tf.multiply(X, w)
@@ -180,6 +190,12 @@ with tf.Session() as sess:
         for (x, y) in zip(trainX, trainY):
             sess.run(train_op, feed_dict={X: x, Y: y})
     print(sess.run(w))
+
+    #TensorFlow Math
+x=tf.add(5,2) #7
+y=tf.multiply(2,5) #10
+z=tf.subtract(10,4) #6
+
 
 
 #PART TWO COMING OVER ON ADVANCED NNC
